@@ -1,0 +1,1 @@
+go run ./src/animes/cmd/animes-api/internal/main.go

@@ -1,0 +1,22 @@
+version: "3"
+services:
+  mongo-anigo-db:
+    image: "mongo:${MONGO_IMAGE_TAG}"
+    container_name: "mongo-anigo-db"
+    env_file:
+      - .env
+    volumes:
+      - mongo-anigo-db-volume:/data/db
+    ports:
+      - "27017-27019:27017-27019"
+    restart: "always"
+  mongo-anigo-seed:
+    build: ../anime-offline-database
+    env_file:
+      - .env
+    links:
+      - mongo-anigo-db
+    depends_on:
+      - mongo-anigo-db
+volumes:
+  mongo-anigo-db-volume:
