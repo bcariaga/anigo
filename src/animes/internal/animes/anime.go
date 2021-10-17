@@ -40,10 +40,7 @@ const (
 func NewAnimeStatus(status string) (Status, error) {
 	var r Status
 	switch s := Status(status); s {
-	case FINISHED:
-	case ONGOING:
-	case UPCOMING:
-	case STATUSUNKNOWN:
+	case FINISHED, ONGOING, UPCOMING, STATUSUNKNOWN:
 		r = s
 	default:
 		return r, fmt.Errorf("can't parse \"%s\" as anime status", status)
@@ -70,11 +67,7 @@ func NewSeason(season string, year int) (AnimeSeason, error) {
 	var r AnimeSeason
 	var ar Season
 	switch s := Season(season); s {
-	case SPRING:
-	case SUMMER:
-	case FALL:
-	case WINTER:
-	case UNDEFINED:
+	case SPRING, SUMMER, FALL, WINTER, UNDEFINED:
 		ar = s
 	default:
 		return r, fmt.Errorf("can't parse \"%s\" as anime season", season)
@@ -95,7 +88,7 @@ type Anime struct {
 	Synonyms    []string
 	Relations   []string
 	Tags        []string
-	Source      []string
+	Sources     []string
 }
 
 func NewAnime(
@@ -109,8 +102,8 @@ func NewAnime(
 	synonyms []string,
 	relations []string,
 	tags []string,
-	source []string) *Anime {
-	fmt.Println(animeType)
+	sources []string) *Anime {
+
 	return &Anime{
 		Title:       title,
 		AnimeType:   animeType,
@@ -122,7 +115,7 @@ func NewAnime(
 		Synonyms:    synonyms,
 		Relations:   relations,
 		Tags:        tags,
-		Source:      source,
+		Sources:     sources,
 	}
 }
 

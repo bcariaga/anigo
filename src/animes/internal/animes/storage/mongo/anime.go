@@ -28,18 +28,15 @@ type AnimeDto struct {
 	Synonyms    []string
 	Relations   []string
 	Tags        []string
-	Source      []string
+	Sources     []string
 }
 
 func (dto *AnimeDto) ConvertToDomain() *animes.Anime {
-	//TODO: manage errors
-	// fmt.Print("dto")
-	// fmt.Println(dto.Type)
+
 	aType, err := animes.NewAnimeType(dto.Type)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(aType)
 	aStatus, err := animes.NewAnimeStatus(dto.Status)
 	if err != nil {
 		log.Fatal(err)
@@ -48,7 +45,7 @@ func (dto *AnimeDto) ConvertToDomain() *animes.Anime {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return animes.NewAnime(dto.Title, aType, aStatus, dto.Episodes, aSeason, dto.Picture, dto.Thumbnail, dto.Synonyms, dto.Relations, dto.Tags, dto.Source)
+	return animes.NewAnime(dto.Title, aType, aStatus, dto.Episodes, aSeason, dto.Picture, dto.Thumbnail, dto.Synonyms, dto.Relations, dto.Tags, dto.Sources)
 }
 
 type MongoDbOpt struct {
